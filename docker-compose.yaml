@@ -1,0 +1,21 @@
+version: '3.8'
+
+volumes:
+  pg_data:
+
+name:
+  another_pg_db
+
+services:
+  pg_db:
+    image: postgres
+    restart: always
+
+    environment:
+      - POSTGRES_PASSWORD=first
+      - POSTGRES_USER=first
+      - POSTGRES_DB=first
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - '5435:5432'

@@ -1,0 +1,31 @@
+output = "internal/domain/models"
+wipe = true
+no-tests = true
+add-soft-deletes = true
+
+[psql]
+dbname = "first"
+host = "localhost"
+port = 5435
+user = "first"
+pass = "first"
+sslmode = "disable"
+blacklist = ["migrations"]
+
+[[types]]
+    [types.match]
+    db_type = "uuid"
+    [types.replace]
+    type = "uuid.UUID"
+    [types.imports]
+    third_party = ['"github.com/gofrs/uuid/v5"']
+
+[[types]]
+    [types.match]
+    db_type = "uuid"
+    nullable = true
+    [types.replace]
+    type = "nuuid.NullUUID"
+    nullable = true
+    [types.imports]
+    third_party = ['"mycleanarch/internal/utils/nuuid"']
